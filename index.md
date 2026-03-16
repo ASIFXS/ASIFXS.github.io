@@ -1,634 +1,259 @@
 ---
-layout: default
-title: Asif Ali — Research Engineer
-permalink: /
+layout: page
+title: Intelligent Grasping
+permalink: /intelligent_grasping/
+ribbon_display: no
 ---
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
 
-:root {
-  --bg:        #0a0a0c;
-  --bg2:       #111116;
-  --bg3:       #18181f;
-  --border:    rgba(255,255,255,0.07);
-  --accent:    #ff5a28;
-  --accent2:   #3ecfcf;
-  --text:      #e8e6e0;
-  --muted:     rgba(232,230,224,0.45);
-  --mono:      'JetBrains Mono', monospace;
-  --sans:      'IBM Plex Sans', sans-serif;
-  --display:   'Syne', sans-serif;
-}
+  .ig-wrapper {
+    font-family: 'DM Sans', sans-serif;
+    color: #0f1117;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 0 80px 0;
+  }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .ig-hero {
+    background: #0f1117;
+    color: #fff;
+    border-radius: 16px;
+    padding: 56px 52px 48px;
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+  }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+  .ig-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(255,107,53,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
-/* ── NOISE OVERLAY ── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.5;
-}
+  .ig-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(99,190,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
-/* ── NAV ── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 56px;
-  background: rgba(10,10,12,0.85);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  text-decoration: none;
-}
-.nav-links {
-  display: flex;
-  gap: 36px;
-  list-style: none;
-}
-.nav-links a {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text); }
+  .ig-hero-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ff6b35;
+    margin-bottom: 18px;
+  }
 
-/* ── WRAPPER ── */
-.site {
-  position: relative;
-  z-index: 1;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
+  .ig-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.02em;
+  }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 100px;
-  padding-bottom: 80px;
-  position: relative;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 20%; right: -10%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,90,40,0.07) 0%, transparent 65%);
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.hero-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 32px; height: 1px;
-  background: var(--accent);
-}
-.hero-name {
-  font-family: var(--display);
-  font-size: clamp(52px, 8vw, 96px);
-  font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  margin-bottom: 32px;
-}
-.hero-name span { color: var(--accent); }
-.hero-role {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--accent2);
-  letter-spacing: 0.1em;
-  margin-bottom: 28px;
-}
-.hero-bio {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.85;
-  color: var(--muted);
-  max-width: 580px;
-  margin-bottom: 48px;
-}
-.hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 52px;
-}
-.hero-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 6px 14px;
-  border-radius: 4px;
-  background: var(--bg2);
-}
-.hero-cta {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 6px;
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  border: 1px solid var(--accent);
-}
-.btn-primary:hover {
-  background: transparent;
-  color: var(--accent);
-}
-.btn-ghost {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid var(--border);
-}
-.btn-ghost:hover {
-  border-color: rgba(255,255,255,0.2);
-  color: var(--text);
-}
+  .ig-hero p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    max-width: 680px;
+    margin: 0;
+    font-weight: 300;
+  }
 
-/* ── SECTION ── */
-.section {
-  padding: 100px 0;
-  border-top: 1px solid var(--border);
-}
-.section-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 24px; height: 1px;
-  background: var(--accent);
-}
-.section-title {
-  font-family: var(--display);
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 56px;
-}
+  .ig-card {
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 48px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background: #fff;
+  }
 
-/* ── ABOUT GRID ── */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.about-text p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-.about-text p:last-child { margin-bottom: 0; }
-.about-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-.stat-box {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  padding: 28px 24px;
-  border-radius: 2px;
-}
-.stat-box:first-child { border-radius: 12px 2px 2px 2px; }
-.stat-box:nth-child(2) { border-radius: 2px 12px 2px 2px; }
-.stat-box:nth-child(3) { border-radius: 2px 2px 2px 12px; }
-.stat-box:last-child { border-radius: 2px 2px 12px 2px; }
-.stat-num {
-  font-family: var(--display);
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 6px;
-}
-.stat-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+  .ig-card:hover {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+  }
 
-/* ── RESEARCH CARDS ── */
-.research-grid {
-  display: grid;
-  gap: 2px;
-}
-.r-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 36px 40px;
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  align-items: center;
-  gap: 32px;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.25s, border-color 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-.r-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-}
-.r-card:hover { background: var(--bg3); border-color: rgba(255,255,255,0.12); }
-.r-card:hover::before { transform: scaleY(1); }
-.r-num {
-  font-family: var(--display);
-  font-size: 48px;
-  font-weight: 800;
-  color: rgba(255,255,255,0.05);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  transition: color 0.3s;
-}
-.r-card:hover .r-num { color: rgba(255,90,40,0.15); }
-.r-body {}
-.r-tags {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-.r-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent2);
-  border: 1px solid rgba(62,207,207,0.2);
-  padding: 3px 9px;
-  border-radius: 3px;
-}
-.r-title {
-  font-family: var(--display);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-.r-desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.r-arrow {
-  font-size: 20px;
-  color: var(--muted);
-  transition: color 0.2s, transform 0.2s;
-}
-.r-card:hover .r-arrow { color: var(--accent); transform: translateX(4px); }
+  .ig-card-header {
+    padding: 32px 36px 24px;
+    border-bottom: 1px solid #f0f0f0;
+  }
 
-/* ── CONTACT ── */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.contact-text {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--muted);
-}
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 13px;
-  transition: all 0.2s;
-}
-.contact-link:hover {
-  background: var(--bg3);
-  border-color: rgba(255,255,255,0.12);
-  color: var(--text);
-}
-.contact-link-icon {
-  width: 36px; height: 36px;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 16px;
-}
-.contact-link-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 2px;
-}
-.contact-link-val {
-  font-size: 13px;
-  color: var(--muted);
-}
+  .ig-card-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ff6b35;
+    margin-bottom: 10px;
+  }
 
-/* ── FOOTER ── */
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 36px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.footer-left {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-}
-.footer-right {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-}
-.footer-right span { color: var(--accent); }
+  .ig-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f1117;
+    margin: 0 0 14px 0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
 
-/* ── FADE-IN ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-eyebrow { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
-.hero-name    { animation: fadeUp 0.6s ease both; animation-delay: 0.2s; }
-.hero-role    { animation: fadeUp 0.6s ease both; animation-delay: 0.3s; }
-.hero-bio     { animation: fadeUp 0.6s ease both; animation-delay: 0.4s; }
-.hero-tags    { animation: fadeUp 0.6s ease both; animation-delay: 0.5s; }
-.hero-cta     { animation: fadeUp 0.6s ease both; animation-delay: 0.6s; }
+  .ig-card-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+    font-weight: 300;
+  }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  .nav { padding: 16px 24px; }
-  .nav-links { gap: 20px; }
-  .site { padding: 0 20px; }
-  .about-grid, .contact-grid { grid-template-columns: 1fr; }
-  .r-card { grid-template-columns: 1fr; gap: 16px; }
-  .r-num { font-size: 32px; }
-  .r-arrow { display: none; }
-  .footer { flex-direction: column; gap: 12px; text-align: center; }
-}
+  .ig-card-video {
+    padding: 24px 36px 28px;
+    background: #fafafa;
+  }
+
+  .ig-card-video-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 12px;
+  }
+
+  .ig-thumb-link {
+    display: block;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 480px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+
+  .ig-thumb-link img {
+    display: block;
+    width: 100%;
+    transition: transform 0.4s ease;
+  }
+
+  .ig-thumb-link:hover img {
+    transform: scale(1.03);
+  }
+
+  .ig-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15,17,23,0.35);
+    transition: background 0.3s ease;
+  }
+
+  .ig-thumb-link:hover .ig-play-overlay {
+    background: rgba(15,17,23,0.2);
+  }
+
+  .ig-play-btn {
+    width: 52px; height: 52px;
+    background: #ff6b35;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255,107,53,0.5);
+    transition: transform 0.3s ease;
+  }
+
+  .ig-thumb-link:hover .ig-play-btn {
+    transform: scale(1.1);
+  }
+
+  .ig-play-btn svg {
+    width: 20px; height: 20px;
+    fill: #fff;
+    margin-left: 3px;
+  }
 </style>
 
-<!-- NAV -->
-<nav class="nav">
-  <a class="nav-logo" href="/">&lt;asif.ali /&gt;</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+<div class="ig-wrapper">
 
-<div class="site">
+  <div class="ig-hero">
+    <div class="ig-hero-label">Research · Autonomous Systems Lab · IIT Madras</div>
+    <h1>Intelligent Grasping</h1>
+    <p>Exploring the intersection of perception, language, and motion planning to enable robots to grasp and manipulate objects autonomously in unstructured, real-world environments.</p>
+  </div>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero-eyebrow">Research Engineer · IIT Madras</div>
-    <h1 class="hero-name">Asif<br><span>Ali</span></h1>
-    <div class="hero-role">// Autonomous Systems Lab</div>
-    <p class="hero-bio">
-      I am a Research Engineer at the Autonomous Systems Lab, IIT Madras, working at the intersection of robotics, computer vision, and AI. My work focuses on enabling robots to perceive, reason, and act intelligently in unstructured real-world environments — from language-guided grasping to safe human-robot collaboration.
-    </p>
-    <div class="hero-tags">
-      <span class="hero-tag">Robotics &amp; Manipulation</span>
-      <span class="hero-tag">Computer Vision</span>
-      <span class="hero-tag">Large Language Models</span>
-      <span class="hero-tag">Human-Robot Collaboration</span>
+  <!-- CARD 1 -->
+  <div class="ig-card">
+    <div class="ig-card-header">
+      <div class="ig-card-number">Project 01</div>
+      <h2 class="ig-card-title">Intelligent Grasp Planning using Open Vocabulary Image Segmentation and LLM</h2>
+      <p class="ig-card-desc">Intelligent grasp planning in unstructured environments remains an open challenge, driven by applications in manufacturing, logistics, healthcare, and assistive robotics. Planning a stable grasp becomes significantly harder when object properties such as geometry, mass distribution, and surface compliance are not known in advance. This work proposes a framework that combines open vocabulary image segmentation with large language models (LLMs) to interpret natural language instructions, identify target objects in the scene, and plan semantically-aware grasps without relying on predefined object categories.</p>
     </div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#research">View Research →</a>
-      <a class="btn btn-ghost" href="#contact">Get in Touch</a>
-    </div>
-  </section>
-
-  <!-- ── ABOUT ── -->
-  <section class="section" id="about">
-    <div class="section-label">About Me</div>
-    <h2 class="section-title">Building intelligent<br>robotic systems</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          I work as a Research Engineer at the Autonomous Systems Lab, IIT Madras, where I develop perception and planning frameworks for robotic manipulation. My research bridges classical robotics with modern AI — combining sensor fusion, motion planning, and large language models to push the boundaries of what autonomous systems can do.
-        </p>
-        <p>
-          I am particularly interested in open-vocabulary manipulation, where robots can act on natural language instructions without being limited to predefined object categories. I also work on real-time human-aware motion planning to enable safe and seamless collaboration between robots and people in shared workspaces.
-        </p>
-        <p>
-          My tools of choice include ROS, Python, PyTorch, and a range of depth sensors and robotic manipulators including the UR5e and Robotiq grippers.
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-box">
-          <div class="stat-num">3+</div>
-          <div class="stat-label">Research Projects</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">IIT</div>
-          <div class="stat-label">Madras · ASL</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">ROS</div>
-          <div class="stat-label">Primary Stack</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-num">AI</div>
-          <div class="stat-label">Focus Area</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── RESEARCH ── -->
-  <section class="section" id="research">
-    <div class="section-label">Research</div>
-    <h2 class="section-title">Selected projects</h2>
-    <div class="research-grid">
-
-      <a class="r-card" href="/intelligent_grasping/">
-        <div class="r-num">01</div>
-        <div class="r-body">
-          <div class="r-tags">
-            <span class="r-tag">LLM</span>
-            <span class="r-tag">Segmentation</span>
-            <span class="r-tag">Grasping</span>
+    <div class="ig-card-video">
+      <div class="ig-card-video-label">▶ Full walkthrough — problem formulation, approach &amp; results</div>
+      <a class="ig-thumb-link" href="https://www.youtube.com/watch?v=FAYOKLMosNI" target="_blank">
+        <img src="https://img.youtube.com/vi/FAYOKLMosNI/0.jpg" alt="Intelligent Grasp Planning using Open Vocabulary Image Segmentation and LLM">
+        <div class="ig-play-overlay">
+          <div class="ig-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
-          <div class="r-title">Intelligent Grasp Planning using Open Vocabulary Image Segmentation and LLM</div>
-          <div class="r-desc">A framework combining open vocabulary image segmentation with LLMs to enable language-guided, semantically-aware grasp planning without predefined object categories.</div>
         </div>
-        <div class="r-arrow">→</div>
       </a>
-
-      <a class="r-card" href="/intelligent_grasping/#project02">
-        <div class="r-num">02</div>
-        <div class="r-body">
-          <div class="r-tags">
-            <span class="r-tag">HRC</span>
-            <span class="r-tag">Motion Planning</span>
-            <span class="r-tag">Real-time</span>
-          </div>
-          <div class="r-title">Real-time Perception and Motion Planning for Human-Robot Collaboration</div>
-          <div class="r-desc">A real-time framework enabling a UR5e manipulator to dynamically re-plan trajectories in response to human movement, ensuring safe and efficient co-working.</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-
-      <a class="r-card" href="/intelligent_grasping/#project03">
-        <div class="r-num">03</div>
-        <div class="r-body">
-          <div class="r-tags">
-            <span class="r-tag">Sensor Fusion</span>
-            <span class="r-tag">Manipulation</span>
-            <span class="r-tag">Pick &amp; Place</span>
-          </div>
-          <div class="r-title">Perception and Motion Planning for Autonomous Grasping</div>
-          <div class="r-desc">Sensor fusion-based estimation of unknown object properties to plan stable, autonomous grasps using a three-finger Robotiq gripper and fiducial markers.</div>
-        </div>
-        <div class="r-arrow">→</div>
-      </a>
-
     </div>
-  </section>
+  </div>
 
-  <!-- ── CONTACT ── -->
-  <section class="section" id="contact">
-    <div class="section-label">Contact</div>
-    <h2 class="section-title">Let's connect</h2>
-    <div class="contact-grid">
-      <p class="contact-text">
-        I'm always open to discussing research collaborations, project ideas, or opportunities in robotics and AI. Feel free to reach out via email or connect with me on LinkedIn or GitHub.
-      </p>
-      <div class="contact-links">
-        <a class="contact-link" href="mailto:mguasifali@gmail.com">
-          <div class="contact-link-icon">✉</div>
-          <div>
-            <span class="contact-link-label">Email</span>
-            <span class="contact-link-val">mguasifali@gmail.com</span>
-          </div>
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/asifalitp/" target="_blank">
-          <div class="contact-link-icon">in</div>
-          <div>
-            <span class="contact-link-label">LinkedIn</span>
-            <span class="contact-link-val">linkedin.com/in/asifalitp</span>
-          </div>
-        </a>
-        <a class="contact-link" href="https://github.com/ASIFXS" target="_blank">
-          <div class="contact-link-icon">⌥</div>
-          <div>
-            <span class="contact-link-label">GitHub</span>
-            <span class="contact-link-val">github.com/ASIFXS</span>
-          </div>
-        </a>
-      </div>
+  <!-- CARD 2 -->
+  <div class="ig-card">
+    <div class="ig-card-header">
+      <div class="ig-card-number">Project 02</div>
+      <h2 class="ig-card-title">Real-time Perception and Motion Planning for Human-Robot Collaboration</h2>
+      <p class="ig-card-desc">Human-robot collaboration in shared workspaces introduces significant challenges for motion planning, as the robot must continuously adapt to the presence and movement of human operators. This work presents a real-time perception and motion planning framework that enables a UR5e manipulator to safely operate alongside humans without interrupting task execution. The system fuses live human tracking with occupancy grid-based path planning, allowing the robot to dynamically re-plan its trajectory in response to human motion and avoid collisions in real time.</p>
     </div>
-  </section>
+    <div class="ig-card-video">
+      <div class="ig-card-video-label">▶ Full walkthrough — methodology, system design &amp; experimental results</div>
+      <a class="ig-thumb-link" href="https://www.youtube.com/watch?v=HLudJf04hnI" target="_blank">
+        <img src="https://img.youtube.com/vi/HLudJf04hnI/0.jpg" alt="Real-time Perception and Motion Planning">
+        <div class="ig-play-overlay">
+          <div class="ig-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
 
-  <!-- ── FOOTER ── */-->
-  <footer class="footer">
-    <div class="footer-left">© 2026 Asif Ali · IIT Madras</div>
-    <div class="footer-right">Built with <span>♥</span> using Jekyll</div>
-  </footer>
+  <!-- CARD 3 -->
+  <div class="ig-card">
+    <div class="ig-card-header">
+      <div class="ig-card-number">Project 03</div>
+      <h2 class="ig-card-title">Perception and Motion Planning for Autonomous Grasping</h2>
+      <p class="ig-card-desc">Autonomous grasping is an active research area primarily because of the wide range of applications including manufacturing, logistics, assistive systems, and healthcare. Grasping and manipulation of objects in real-world environments is a challenging research problem, when properties of the object such as weight, shape, dimensions, stiffness etc. are unknown. This research work aims to explore sensor fusion to help estimate the object properties and then plan a stable grasp based on the manipulation requirements.</p>
+    </div>
+    <div class="ig-card-video">
+      <div class="ig-card-video-label">▶ Preliminary results — autonomous pick-and-place with Robotiq gripper</div>
+      <a class="ig-thumb-link" href="https://www.youtube.com/watch?v=glKLp9OO6yQ" target="_blank">
+        <img src="https://img.youtube.com/vi/glKLp9OO6yQ/0.jpg" alt="Autonomous Pick and Place">
+        <div class="ig-play-overlay">
+          <div class="ig-play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
 
 </div>
