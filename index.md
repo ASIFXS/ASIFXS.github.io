@@ -9,6 +9,15 @@ ribbon_display: no
 
 ---
 
+
+<p align="center">
+  <img 
+    src="https://asifxs.github.io/grasp-demo.gif"
+    width="100%"
+  />
+</p>
+
+
 ### Intelligent Grasp Planning using Open Vocabulary Image Segmentation and LLM
 
 Intelligent grasp planning is a growing research area with applications spanning industrial automation, assistive robotics, and service systems. Deploying grasp planners in open-ended real-world environments is particularly challenging when the robot must handle a diverse range of everyday objects without task-specific training. This work proposes a pipeline that combines open vocabulary image segmentation with large language model inference to enable natural language-driven, explainable grasp planning without relying on predefined object categories.
